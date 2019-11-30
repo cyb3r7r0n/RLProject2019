@@ -4,6 +4,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
+import matplotlib.pyplot as plt
+
 MAX_DAYS = 30
 
 class Agent(nn.Module):
@@ -59,7 +61,7 @@ def train(num_episodes, batch_size, agents):
                 correct_action = 0
                 reward = 0
                 if action > 0.5 or day >= MAX_DAYS:
-                    reward = -1
+                    reward = -0.1
                     if np.all(agents_chosen):
                         correct_action = 1
                         reward = 1
@@ -116,8 +118,10 @@ if __name__ == '__main__':
 
     plt.figure()
     plt.plot(episode_numbers, rewards, label = "Average Rewards")
-    plt.plot(episode_numbers, standard_deviations, label = "Standard Deviation")
+    # plt.plot(episode_numbers, standard_deviations, label = "Standard Deviation")
     plt.xlabel("Num Episodes")
+    plt.ylabel("Average Rewards")
+    plt.title("Policy Approximation")
     plt.savefig("results/policy.png")
     plt.close("all")
 

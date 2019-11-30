@@ -84,12 +84,12 @@ def run_trial(opt, result_path=None, verbose=False):
 	episode_numbers, rewards, std_devs = arena.train(agents, verbose=verbose, test_callback=test_callback)
 	plt.figure()
 	plt.plot(episode_numbers, rewards, label = "Average Rewards")
-	plt.plot(episode_numbers, std_devs, label = "Standard Deviation")
+	# plt.plot(episode_numbers, std_devs, label = "Standard Deviation")
 	if opt.model_dial == True:
 		plt.title("DIAL")
 	else:
 		plt.title("RIAL")	
-	# plt.ylabel("Average Reward")
+	plt.ylabel("Average Reward")
 	plt.xlabel("Num Episodes")
 	if opt.model_dial == True:
 		plt.savefig("results/dial.png")
